@@ -6,10 +6,11 @@
   "engines": {
     "node": ">=20.0.0"
   },
- "scripts": {
+"scripts": {
   "build": "npm install --prefix frontend && npm run build --prefix frontend",
-  "start": "npm run build && npm start --prefix backend"
+  "start": "npm install --prefix backend && npm run build && npm start --prefix backend"
 },
+
 
   "repository": {
     "type": "git",
