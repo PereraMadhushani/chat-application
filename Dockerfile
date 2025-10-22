@@ -25,7 +25,7 @@ COPY backend/ ./
 COPY --from=build /app/frontend/dist/ ./public/
 
 # Expose port
-EXPOSE 5000
+EXPOSE 8080
 
 # Start backend
 CMD ["node", "src/server.js"]
