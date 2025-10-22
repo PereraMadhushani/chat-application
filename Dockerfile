@@ -1,27 +1,31 @@
-# ---- Stage 1: Build React frontend ----
+# ---- Stage 1: Build Vite frontend ----
 FROM node:20 AS build
 WORKDIR /app/frontend
 
-# Copy frontend files
+# Copy and install frontend dependencies
 COPY frontend/package*.json ./
 RUN npm install
-COPY frontend/ ./
 
-# Build React
+# Copy frontend source files and build
+COPY frontend/ ./
 RUN npm run build
 
 # ---- Stage 2: Setup Node backend ----
 FROM node:20
-WORKDIR /app
+WORKDIR /app/backend
 
-# Copy backend
-COPY backend/package*.json ./backend/
-RUN cd backend && npm install
-COPY backend ./backend
+# Copy and install backend dependencies
+COPY backend/package*.json ./
+RUN npm install
 
-# Copy React build into backend/public
+# Copy backend source code
+COPY backend/ ./
+
+# Copy frontend build into backend/public
 COPY --from=build /app/frontend/dist/ ./public/
 
-WORKDIR /app/backend
+# Expose port
 EXPOSE 5000
+
+# Start backend
 CMD ["node", "src/server.js"]
