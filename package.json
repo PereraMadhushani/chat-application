@@ -6,12 +6,10 @@
   "engines": {
     "node": ">=20.0.0"
   },
-"scripts": {
-  "build": "npm install --prefix frontend && npm run build --prefix frontend",
-  "start": "npm install --prefix backend && npm run build && npm start --prefix backend"
-},
-
-
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm install --prefix backend && npm run build && npm start --prefix backend"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PereraMadhushani/chat-application.git"
@@ -25,6 +23,8 @@
   },
   "homepage": "https://github.com/PereraMadhushani/chat-application#readme",
   "dependencies": {
+    "@arcjet/inspect": "^1.0.0-beta.10",
+    "@arcjet/node": "^1.0.0-beta.10",
     "resend": "^6.0.2"
   }
 }
