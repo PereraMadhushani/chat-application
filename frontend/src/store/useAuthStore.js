@@ -62,6 +62,17 @@ logout: async()=>{
         toast.error(error.response?.data?.message || "Logout failed");
         console.log("Error in logout", error);
     }
+},
+
+updateProfile: async(updatedData)=>{
+    try{
+        const res = await axiosInstance.put('/auth/update-profile', updatedData);
+        set({authUser:res.data});
+        toast.success("Profile updated successfully!");
+    }catch(error){
+        toast.error(error.response?.data?.message || "Profile update failed");
+        console.log("Error in updateProfile", error);
+    }
 }
 
 
