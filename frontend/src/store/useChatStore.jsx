@@ -1,14 +1,16 @@
-import {create} from 'zustand'
+import {create} from 'zustand';
+import { axiosInstance } from "../lib/axios";
+import toast from "react-hot-toast";
 
-export const useChatStore = create((set) => ({
-    allContents:[],
+export const useChatStore = create((set,get) => ({
+    allContacts:[],
     chats:[],
     messages:[],
     activeTab:"chats",
     selectedUser:null,
     isUsersLoading:false,
     isMessagesLoading:false,
-    isSoundEnabled:localStorage.getItem("isSoundEnabled") === "true",
+    isSoundEnabled:JSON.parse(localStorage.getItem("isSoundEnabled")) === true,
 
     toggleSound:() =>{
         localStorage.setItem("isSoundEnabled", !get().isSoundEnabled)
@@ -22,7 +24,7 @@ export const useChatStore = create((set) => ({
         set({isUsersLoading:true})
         try{
             const res =await axiosInstance.get("/messages/contacts");
-            set({allContents:res.data})
+            set({allContacts:res.data})
         }
         catch(error){
             toast.error("Failed to fetch contacts", error.response?.data?.message)

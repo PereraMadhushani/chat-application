@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 // API routes
 app.use("/api/auth", authRoutes);
-app.use("/api/message", messageRoutes);
+app.use("/api/messages", messageRoutes);
 
 // ✅ Serve frontend in production
 if (ENV.NODE_ENV === "production") {
